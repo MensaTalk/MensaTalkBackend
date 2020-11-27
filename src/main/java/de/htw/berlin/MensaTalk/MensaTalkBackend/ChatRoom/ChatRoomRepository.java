@@ -1,4 +1,6 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom;
 
-public class ChatRoomRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ChatRoomRepository extends JpaRepository<ChatRoom, Long> {
 }

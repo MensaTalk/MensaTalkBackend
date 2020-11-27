@@ -1,8 +1,8 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.ChatUser;
-import org.springframework.data.annotation.Id;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser;
+
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,6 +23,7 @@ public class ChatMessage {
     private String chatMessage;
 
     //User
+    @ManyToOne
     @JoinColumn(name = "chat_user_id", nullable = false)
     private ChatUser chatUser;
 
@@ -97,11 +98,11 @@ public class ChatMessage {
         this.creationDateTime = creationDateTime;
     }
 
-    public de.htw.berlin.MensaTalk.MensaTalkBackend.User.ChatUser getChatUser() {
+    public de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser getChatUser() {
         return chatUser;
     }
 
-    public void setChatUser(de.htw.berlin.MensaTalk.MensaTalkBackend.User.ChatUser chatUser) {
+    public void setChatUser(de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser chatUser) {
         this.chatUser = chatUser;
     }
 }

@@ -1,4 +1,4 @@
-package de.htw.berlin.MensaTalk.MensaTalkBackend.User;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package de.htw.berlin.MensaTalk.MensaTalkBackend.User;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

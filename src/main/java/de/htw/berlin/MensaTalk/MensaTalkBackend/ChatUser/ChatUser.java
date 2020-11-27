@@ -1,9 +1,10 @@
-package de.htw.berlin.MensaTalk.MensaTalkBackend.User;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser;
 
+import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessage;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Entity
@@ -19,6 +20,8 @@ public class ChatUser {
     @JoinColumn(name="chat_room_id", nullable=false)
     private ChatRoom chatRoom;
 
+    @OneToMany(mappedBy = "chatUser")
+    private Set<ChatMessage> chatMessages;
 
     public ChatUser(){}
     public ChatUser(long id, String name, ChatRoom chatRoom) {

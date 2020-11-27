@@ -1,8 +1,7 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessage;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.ChatUser;
-import org.springframework.data.annotation.Id;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -16,13 +15,15 @@ public class ChatRoom {
 
     private String name;
 
-    @OneToMany(mappedBy="chat_message")
+    @OneToMany(mappedBy = "chatRoom")
     private Set<ChatMessage> chatMessages;
 
-    @OneToMany(mappedBy="chat_user")
+    @OneToMany(mappedBy = "chatRoom")
     private Set<ChatUser> chatUsers;
 
-    public ChatRoom(){}
+    public ChatRoom() {
+    }
+
     public ChatRoom(long id, String name, Set<ChatMessage> chatMessages, Set<ChatUser> chatUsers) {
         this.id = id;
         this.name = name;
