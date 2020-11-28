@@ -19,10 +19,8 @@ public class ChatMessage implements Serializable {
     @Column(name="chat_message_id")
     private long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne
     @JoinColumn(name = "chat_room_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private ChatRoom chatRoom;
 
     //Inhalte
@@ -37,8 +35,7 @@ public class ChatMessage implements Serializable {
     public ChatMessage() {
     }
 
-    public ChatMessage(long id, ChatRoom chatRoom, String textMessage, Date created_at) {
-        this.id = id;
+    public ChatMessage(ChatRoom chatRoom, String textMessage, Date created_at) {
         this.chatRoom = chatRoom;
         this.textMessage = textMessage;
         this.created_at = created_at;

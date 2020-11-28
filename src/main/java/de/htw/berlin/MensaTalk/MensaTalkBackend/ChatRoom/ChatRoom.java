@@ -4,6 +4,8 @@ import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessage;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,13 +19,20 @@ public class ChatRoom implements Serializable {
     @Column(nullable = false)
     private String name;
 
+    @OneToMany(
+            mappedBy = "chatRoom",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ChatMessage> chatMessageList = new ArrayList<>();
 
     public ChatRoom() {
+
     }
 
-    public ChatRoom(long id, String name) {
-        this.id = id;
+    public ChatRoom(String name, List<ChatMessage> chatMessageList) {
         this.name = name;
+        this.chatMessageList = chatMessageList;
     }
 
     public long getId() {
@@ -40,5 +49,13 @@ public class ChatRoom implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<ChatMessage> getChatMessageList() {
+        return chatMessageList;
+    }
+
+    public void setChatMessageList(List<ChatMessage> chatMessageList) {
+        this.chatMessageList = chatMessageList;
     }
 }
