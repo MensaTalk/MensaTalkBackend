@@ -14,13 +14,15 @@ public class ChatUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="chat_room_id", nullable=false)
+    @JoinColumn(name="chat_room_id", nullable=true)
     private ChatRoom chatRoom;
 
     @OneToMany(mappedBy = "chatUser")
+    @Column(nullable = true)
     private Set<ChatMessage> chatMessages;
 
     public ChatUser(){}

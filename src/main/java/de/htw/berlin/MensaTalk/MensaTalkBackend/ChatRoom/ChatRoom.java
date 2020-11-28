@@ -15,9 +15,11 @@ public class ChatRoom {
 
     private String name;
 
+    @Column(nullable = true)
     @OneToMany(mappedBy = "chatRoom")
     private Set<ChatMessage> chatMessages;
 
+    @Column(nullable = true)
     @OneToMany(mappedBy = "chatRoom")
     private Set<ChatUser> chatUsers;
 

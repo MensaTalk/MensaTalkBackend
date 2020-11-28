@@ -3,7 +3,6 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser;
 
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,6 +12,7 @@ public class ChatMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
 
     @ManyToOne
@@ -20,7 +20,8 @@ public class ChatMessage {
     private ChatRoom chatRoom;
 
     //Inhalte
-    private String chatMessage;
+    @Column(nullable = false)
+    private String textMessage;
 
     //User
     @ManyToOne
@@ -29,25 +30,24 @@ public class ChatMessage {
 
     //TimeStamp
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date publicationDate;
 
     @Temporal(TemporalType.TIME)
+    @Column(nullable = false)
     private Date publicationTime;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDateTime;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(long id, ChatRoom chatRoom, String chatMessage, ChatUser chatUser, Date publicationDate, Date publicationTime, Date creationDateTime) {
+    public ChatMessage(long id, ChatRoom chatRoom, String textMessage, ChatUser chatUser, Date publicationDate, Date publicationTime) {
         this.id = id;
         this.chatRoom = chatRoom;
-        this.chatMessage = chatMessage;
+        this.textMessage = textMessage;
         this.chatUser = chatUser;
         this.publicationDate = publicationDate;
         this.publicationTime = publicationTime;
-        this.creationDateTime = creationDateTime;
+
     }
 
     public long getId() {
@@ -66,12 +66,12 @@ public class ChatMessage {
         this.chatRoom = chatRoom;
     }
 
-    public String getChatMessage() {
-        return chatMessage;
+    public String getTextMessage() {
+        return textMessage;
     }
 
-    public void setChatMessage(String chatMessage) {
-        this.chatMessage = chatMessage;
+    public void setTextMessage(String textMessage) {
+        this.textMessage = textMessage;
     }
 
     public Date getPublicationDate() {
@@ -88,14 +88,6 @@ public class ChatMessage {
 
     public void setPublicationTime(Date publicationTime) {
         this.publicationTime = publicationTime;
-    }
-
-    public Date getCreationDateTime() {
-        return creationDateTime;
-    }
-
-    public void setCreationDateTime(Date creationDateTime) {
-        this.creationDateTime = creationDateTime;
     }
 
     public de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser getChatUser() {
