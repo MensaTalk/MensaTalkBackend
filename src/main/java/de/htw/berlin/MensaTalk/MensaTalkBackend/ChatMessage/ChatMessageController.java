@@ -15,7 +15,7 @@ public class ChatMessageController {
     private ChatRoomRepository chatRoomRepository;
 
     // Direkter Zugriff
-    @GetMapping("/chatmessages/")
+    @GetMapping("/chatmessages")
     public List<ChatMessage> getAllMessages(){
         return chatMessageRepository.findAll();
     }
@@ -25,25 +25,14 @@ public class ChatMessageController {
         return chatMessageRepository.findById(id);
     }
 
-    @PostMapping(value = "/chatmessages/")
+    @PostMapping(value = "/chatmessages")
     public ChatMessage postNewMessage(@RequestBody ChatMessage chatMessage){
         return chatMessageRepository.save(chatMessage);
     }
 
     // In Abhängigkeit zum Raum
-    @GetMapping("/chatrooms/{roomId}/chatmessages/")
+    @GetMapping("/chatrooms/{roomId}/chatmessages")
     public List<ChatMessage> getAllMessagesInRoom(@PathVariable long roomId){
         return chatMessageRepository.findByChatRoom(roomId);
-    }
-
-    @GetMapping("/chatrooms/{roomId}/chatmessages/{id}")
-    public Optional<ChatMessage> getMessageByIdInRoom(@PathVariable long roomId,@PathVariable long id){
-        return chatMessageRepository.findByIdAndChatRoom(id, roomId);
-    }
-
-    @PostMapping(value = "/chatrooms/{roomId}/chatmessages/")
-    public ChatMessage postNewMessageInRoom(@PathVariable long roomId, @RequestBody ChatMessage chatMessage){
-        chatMessage.setChatRoom(chatRoomRepository.findById(roomId).get());
-        return chatMessageRepository.save(chatMessage);
     }
 }

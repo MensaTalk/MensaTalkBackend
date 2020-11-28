@@ -13,7 +13,7 @@ public class ChatRoomController {
     @Autowired
     private ChatRoomRepository chatRoomRepository;
 
-    @RequestMapping("/chatrooms/")
+    @RequestMapping("/chatrooms")
     public List<ChatRoom> getRooms(){
         return chatRoomRepository.findAll();
     }
