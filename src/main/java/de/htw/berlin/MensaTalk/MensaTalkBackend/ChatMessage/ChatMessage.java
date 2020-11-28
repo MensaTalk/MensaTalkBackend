@@ -1,5 +1,6 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
 import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +20,7 @@ public class ChatMessage implements Serializable {
     @Column(name="chat_message_id")
     private long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "chat_room_id", nullable = false)
     private ChatRoom chatRoom;

@@ -1,5 +1,6 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessage;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -25,7 +26,7 @@ public class ChatRoom implements Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JsonIgnore
+    @JsonManagedReference
     private List<ChatMessage> chatMessageList = new ArrayList<>();
 
     public ChatRoom() {
