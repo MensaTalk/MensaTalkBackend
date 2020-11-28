@@ -15,33 +15,33 @@ public class ChatMessageController {
     private ChatRoomRepository chatRoomRepository;
 
     // Direkter Zugriff
-    @GetMapping("/")
+    @GetMapping("/chatmessages/")
     public List<ChatMessage> getAllMessages(){
         return chatMessageRepository.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/chatmessages/{id}")
     public Optional<ChatMessage> getMessageById(@PathVariable long id){
         return chatMessageRepository.findById(id);
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "/chatmessages/")
     public ChatMessage postNewMessage(@RequestBody ChatMessage chatMessage){
         return chatMessageRepository.save(chatMessage);
     }
 
     // In Abhängigkeit zum Raum
-    @GetMapping("chatrooms/{roomId}/chatmessages/")
+    @GetMapping("/chatrooms/{roomId}/chatmessages/")
     public List<ChatMessage> getAllMessagesInRoom(@PathVariable long roomId){
         return chatMessageRepository.findAll();
     }
 
-    @GetMapping("chatrooms/{roomId}/chatmessages/{id}")
+    @GetMapping("/chatrooms/{roomId}/chatmessages/{id}")
     public Optional<ChatMessage> getMessageByIdInRoom(@PathVariable long roomId,@PathVariable long id){
         return chatMessageRepository.findById(id);
     }
 
-    @PostMapping(value = "chatrooms/{roomId}/chatmessages/")
+    @PostMapping(value = "/chatrooms/{roomId}/chatmessages/")
     public ChatMessage postNewMessageInRoom(@PathVariable long roomId, @RequestBody ChatMessage chatMessage){
         chatMessage.setChatRoom(chatRoomRepository.findById(roomId).get());
         return chatMessageRepository.save(chatMessage);

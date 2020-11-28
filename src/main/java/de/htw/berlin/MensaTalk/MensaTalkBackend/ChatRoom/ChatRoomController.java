@@ -9,16 +9,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("chatrooms")
 public class ChatRoomController {
     @Autowired
     private ChatRoomRepository chatRoomRepository;
 
-    @RequestMapping("/")
+    @RequestMapping("/chatrooms/")
     public List<ChatRoom> getRooms(){
         return chatRoomRepository.findAll();
     }
-    @RequestMapping("/{id}")
+    @RequestMapping("/chatrooms/{id}")
     public Optional<ChatRoom> getRoomById(@PathVariable long id){
         return chatRoomRepository.findById(id);
     }
