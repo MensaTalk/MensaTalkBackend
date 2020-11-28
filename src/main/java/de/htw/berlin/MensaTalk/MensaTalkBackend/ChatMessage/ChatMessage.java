@@ -21,6 +21,7 @@ public class ChatMessage implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "chat_room_id", nullable = false)
+    @JsonIgnore
     private ChatRoom chatRoom;
 
     //Inhalte
