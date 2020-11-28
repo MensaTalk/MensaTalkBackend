@@ -27,7 +27,7 @@ public class ChatMessageController {
 
     @GetMapping("/{roomId}")
     public List<ChatMessage> getAllMessagesForRoom(@PathVariable long roomId){
-        return chatMessageRepository.findAllByRoom(chatRoomRepository.findById(roomId).get());
+        return chatMessageRepository.findAllByChatRoom(chatRoomRepository.findById(roomId).get());
     }
 
     @PostMapping(value = "/")
