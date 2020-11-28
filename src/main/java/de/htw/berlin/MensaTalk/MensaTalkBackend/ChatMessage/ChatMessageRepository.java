@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface ChatMessageRepository extends JpaRepository<ChatMessage, Long> {
-    List<ChatMessage> findByRoomId(Long postId);
-    Optional<ChatMessage> findByIdAndRoomId(Long id, Long postId);
+    List<ChatMessage> findByChatRoom(Long postId);
+    Optional<ChatMessage> findByIdAndChatRoom(Long id, Long postId);
 }
