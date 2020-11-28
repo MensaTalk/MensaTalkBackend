@@ -1,6 +1,7 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessage;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,6 +25,7 @@ public class ChatRoom implements Serializable {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private List<ChatMessage> chatMessageList = new ArrayList<>();
 
     public ChatRoom() {
