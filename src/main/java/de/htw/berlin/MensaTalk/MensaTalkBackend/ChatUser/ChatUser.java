@@ -26,10 +26,11 @@ public class ChatUser {
     private Set<ChatMessage> chatMessages;
 
     public ChatUser(){}
-    public ChatUser(long id, String name, ChatRoom chatRoom) {
+    public ChatUser(long id, String name, ChatRoom chatRoom, Set<ChatMessage> chatMessages) {
         this.id = id;
         this.name = name;
         this.chatRoom = chatRoom;
+        this.chatMessages = chatMessages;
     }
 
     public long getId() {
