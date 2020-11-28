@@ -1,7 +1,8 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,18 +16,14 @@ public class ChatMessage {
     @Column
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "chat_room_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private ChatRoom chatRoom;
 
     //Inhalte
     @Column(nullable = false)
     private String textMessage;
-
-    //User
-    @ManyToOne
-    @JoinColumn(name = "chat_user_id", nullable = false)
-    private ChatUser chatUser;
 
     //TimeStamp
     @Temporal(TemporalType.DATE)
@@ -40,11 +37,10 @@ public class ChatMessage {
     public ChatMessage() {
     }
 
-    public ChatMessage(long id, ChatRoom chatRoom, String textMessage, ChatUser chatUser, Date publicationDate, Date publicationTime) {
+    public ChatMessage(long id, ChatRoom chatRoom, String textMessage, Date publicationDate, Date publicationTime) {
         this.id = id;
         this.chatRoom = chatRoom;
         this.textMessage = textMessage;
-        this.chatUser = chatUser;
         this.publicationDate = publicationDate;
         this.publicationTime = publicationTime;
 
@@ -90,11 +86,4 @@ public class ChatMessage {
         this.publicationTime = publicationTime;
     }
 
-    public de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser getChatUser() {
-        return chatUser;
-    }
-
-    public void setChatUser(de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser chatUser) {
-        this.chatUser = chatUser;
-    }
 }
