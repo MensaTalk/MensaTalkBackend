@@ -2,8 +2,6 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoomRepository;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUser;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatUser.ChatUserRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,17 +15,14 @@ public class MensaTalkBackendApplication {
     }
 
     @Bean
-    ApplicationRunner applicationRunner(ChatRoomRepository chatRoomRepository, ChatUserRepository chatUserRepository) {
+    ApplicationRunner applicationRunner(ChatRoomRepository chatRoomRepository) {
         return args -> {
             //Create 3 Rooms
-            chatRoomRepository.save(new ChatRoom(1l, "testRoom1", null, null));
-            chatRoomRepository.save(new ChatRoom(2l, "testRoom2", null, null));
-            chatRoomRepository.save(new ChatRoom(3l, "testRoom1", null, null));
+            chatRoomRepository.save(new ChatRoom(1l, "testRoom1", null));
+            chatRoomRepository.save(new ChatRoom(2l, "testRoom2", null));
+            chatRoomRepository.save(new ChatRoom(3l, "testRoom1", null));
 
-            //Create 3 Users
-            chatUserRepository.save(new ChatUser(1l, "Oliver", null, null));
-            chatUserRepository.save(new ChatUser(2l, "Tilman", null, null));
-            chatUserRepository.save(new ChatUser(3l, "Steven", null, null));
+
 
 
         };
