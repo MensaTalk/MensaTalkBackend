@@ -1,6 +1,7 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -13,7 +14,7 @@ public class ChatMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name="chat_message_id")
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -26,24 +27,17 @@ public class ChatMessage {
     private String textMessage;
 
     //TimeStamp
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date publicationDate;
-
-    @Temporal(TemporalType.TIME)
-    @Column(nullable = false)
-    private Date publicationTime;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private Date created_at;
 
     public ChatMessage() {
     }
 
-    public ChatMessage(long id, ChatRoom chatRoom, String textMessage, Date publicationDate, Date publicationTime) {
+    public ChatMessage(long id, ChatRoom chatRoom, String textMessage) {
         this.id = id;
         this.chatRoom = chatRoom;
         this.textMessage = textMessage;
-        this.publicationDate = publicationDate;
-        this.publicationTime = publicationTime;
-
     }
 
     public long getId() {
@@ -70,20 +64,5 @@ public class ChatMessage {
         this.textMessage = textMessage;
     }
 
-    public Date getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(Date publicationDate) {
-        this.publicationDate = publicationDate;
-    }
-
-    public Date getPublicationTime() {
-        return publicationTime;
-    }
-
-    public void setPublicationTime(Date publicationTime) {
-        this.publicationTime = publicationTime;
-    }
 
 }

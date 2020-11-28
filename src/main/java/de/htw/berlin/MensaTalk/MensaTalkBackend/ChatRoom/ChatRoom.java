@@ -10,6 +10,7 @@ import java.util.Set;
 public class ChatRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="chat_room_id")
     private long id;
 
     @Column(nullable = false)

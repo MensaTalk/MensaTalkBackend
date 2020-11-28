@@ -1,5 +1,6 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend;
 
+import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessageRepository;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoomRepository;
 import org.springframework.boot.ApplicationRunner;
@@ -15,7 +16,7 @@ public class MensaTalkBackendApplication {
     }
 
     @Bean
-    ApplicationRunner applicationRunner(ChatRoomRepository chatRoomRepository) {
+    ApplicationRunner applicationRunner(ChatRoomRepository chatRoomRepository, ChatMessageRepository chatMessageRepository) {
         return args -> {
             //Create 3 Rooms
             chatRoomRepository.save(new ChatRoom(1l, "testRoom1", null));
