@@ -25,7 +25,7 @@ public class MensaTalkBackendApplication {
             chatRoomRepository.save(new ChatRoom(3l, "testRoom1", null, null));
 
             //Create 3 Users
-            chatUserRepository.save(new ChatUser(1l, "Oliver", null, null));
+            chatUserRepository.save(new ChatUser(1l, "Oliver", chatRoomRepository.findById(1l).get(), null));
             chatUserRepository.save(new ChatUser(2l, "Tilman", null, null));
             chatUserRepository.save(new ChatUser(3l, "Steven", null, null));
 
