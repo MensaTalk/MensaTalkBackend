@@ -18,7 +18,7 @@ public class MensaTalkBackendApplication {
 	ApplicationRunner applicationRunner(ChatRoomRepository chatRoomRepository){
 		return args -> {
 			chatRoomRepository.save(new ChatRoom(1l, "testRoom1",null,null));
-			chatRoomRepository.save(new ChatRoom(1l, "testRoom2",null,null));
+			chatRoomRepository.save(new ChatRoom(2l, "testRoom2",null,null));
 		};
 	}
 }
