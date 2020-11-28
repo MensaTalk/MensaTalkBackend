@@ -33,6 +33,6 @@ public class ChatMessageController {
     // In Abhängigkeit zum Raum
     @GetMapping("/chatrooms/{roomId}/chatmessages")
     public List<ChatMessage> getAllMessagesInRoom(@PathVariable long roomId){
-        return chatMessageRepository.findByChatRoom(roomId);
+        return chatMessageRepository.findByChatRoomId(roomId);
     }
 }
