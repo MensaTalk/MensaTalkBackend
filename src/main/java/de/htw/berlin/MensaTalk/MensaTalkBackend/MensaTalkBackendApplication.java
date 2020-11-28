@@ -20,14 +20,14 @@ public class MensaTalkBackendApplication {
     ApplicationRunner applicationRunner(ChatRoomRepository chatRoomRepository, ChatUserRepository chatUserRepository) {
         return args -> {
             //Create 3 Rooms
-            chatRoomRepository.save(new ChatRoom(0l, "testRoom1", null, null));
             chatRoomRepository.save(new ChatRoom(1l, "testRoom1", null, null));
             chatRoomRepository.save(new ChatRoom(2l, "testRoom2", null, null));
+            chatRoomRepository.save(new ChatRoom(3l, "testRoom1", null, null));
 
             //Create 3 Users
-            chatUserRepository.save(new ChatUser(0l, "Steven", null, null));
             chatUserRepository.save(new ChatUser(1l, "Oliver", null, null));
             chatUserRepository.save(new ChatUser(2l, "Tilman", null, null));
+            chatUserRepository.save(new ChatUser(3l, "Steven", null, null));
 
 
         };

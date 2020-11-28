@@ -1,10 +1,10 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
+import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel  = "chatMessage", path = "chatMessage")
+import java.util.List;
+
 public interface ChatMessageRepository extends JpaRepository<ChatMessage, Long> {
-
+    List<ChatMessage> findAllByRoom(ChatRoom chatRoom);
 }
