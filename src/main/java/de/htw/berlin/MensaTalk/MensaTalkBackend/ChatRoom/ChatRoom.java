@@ -3,11 +3,12 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessage;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "chat_room")
-public class ChatRoom {
+public class ChatRoom implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="chat_room_id")
