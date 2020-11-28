@@ -20,10 +20,9 @@ public class ChatRoom {
     public ChatRoom() {
     }
 
-    public ChatRoom(long id, String name, Set<ChatMessage> chatMessages) {
+    public ChatRoom(long id, String name) {
         this.id = id;
         this.name = name;
-
     }
 
     public long getId() {
@@ -41,5 +40,4 @@ public class ChatRoom {
     public void setName(String name) {
         this.name = name;
     }
-
 }

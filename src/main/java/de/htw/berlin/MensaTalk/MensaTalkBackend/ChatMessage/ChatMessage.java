@@ -1,6 +1,7 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
+import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -20,6 +21,7 @@ public class ChatMessage {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "chat_room_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private ChatRoom chatRoom;
 
     //Inhalte
@@ -34,10 +36,11 @@ public class ChatMessage {
     public ChatMessage() {
     }
 
-    public ChatMessage(long id, ChatRoom chatRoom, String textMessage) {
+    public ChatMessage(long id, ChatRoom chatRoom, String textMessage, Date created_at) {
         this.id = id;
         this.chatRoom = chatRoom;
         this.textMessage = textMessage;
+        this.created_at = created_at;
     }
 
     public long getId() {
@@ -64,5 +67,11 @@ public class ChatMessage {
         this.textMessage = textMessage;
     }
 
+    public Date getCreated_at() {
+        return created_at;
+    }
 
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
 }
