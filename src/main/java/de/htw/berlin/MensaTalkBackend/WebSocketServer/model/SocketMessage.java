@@ -1,38 +1,21 @@
 package de.htw.berlin.MensaTalkBackend.WebSocketServer.model;
 
 public class SocketMessage {
-    private MessageType type;
-    private String content;
-    private String sender;
+    private String text;
+    private String from;
 
-    public enum MessageType {
-        CHAT,
-        JOIN,
-        LEAVE
+    public SocketMessage(String content, String from) {
+        this.text = content;
+        this.from = from;
     }
 
-    public MessageType getType() {
-        return type;
+    public String getText() {
+        return text;
     }
 
-    public void setType(MessageType type) {
-        this.type = type;
+    public String getFrom() {
+        return from;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getSender() {
-        return sender;
-    }
-
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
 }
 
