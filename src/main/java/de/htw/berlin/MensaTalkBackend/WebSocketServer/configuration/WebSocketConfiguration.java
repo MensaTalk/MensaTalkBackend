@@ -13,7 +13,7 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/chatsocket").setAllowedOrigins("*").withSockJS();
+        registry.addEndpoint("/chatsocket").setAllowedOrigins("chrome-extension://*").withSockJS();
     }
 
     @Override
