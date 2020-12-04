@@ -16,3 +16,7 @@ INSERT INTO chat_message (chat_message_id, created_at, text_message, chat_room_i
 INSERT INTO chat_message (chat_message_id, created_at, text_message, chat_room_id) VALUES ('10', current_timestamp , 'first message room 4','4');
 INSERT INTO chat_message (chat_message_id, created_at, text_message, chat_room_id) VALUES ('11', current_timestamp , 'second message room 4','4');
 INSERT INTO chat_message (chat_message_id, created_at, text_message, chat_room_id) VALUES ('12', current_timestamp , 'third message room 4','4');
+
+
+INSERT INTO app_user (app_user_id, username, password, active, roles, permissions) VALUES ('1', 'Tilman', '12341234', '1', '','');
+INSERT INTO app_user (app_user_id, username, password, active, roles, permissions) VALUES ('2', 'Steven', '12341234', '1', '','');
