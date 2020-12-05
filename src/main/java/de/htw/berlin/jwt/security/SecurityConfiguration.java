@@ -20,12 +20,10 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationEn
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserPrincipalDetailsService userPrincipalDetailsService;
     private UserRepository userRepository;
-    private BasicAuthenticationEntryPoint basicAuthenticationEntryPoint;
 
-    public SecurityConfiguration(UserPrincipalDetailsService userPrincipalDetailsService, UserRepository userRepository, BasicAuthenticationEntryPoint basicAuthenticationEntryPoint) {
+    public SecurityConfiguration(UserPrincipalDetailsService userPrincipalDetailsService, UserRepository userRepository) {
         this.userPrincipalDetailsService = userPrincipalDetailsService;
         this.userRepository = userRepository;
-        this.basicAuthenticationEntryPoint = basicAuthenticationEntryPoint;
     }
 
     @Override
@@ -42,17 +40,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 // add jwt filters (1. authentication, 2. authorization)
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(),  this.userRepository))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.userRepository))
                 .authorizeRequests()
                 // configure access rules
                 .antMatchers(HttpMethod.POST, "/login").permitAll()
-//                .antMatchers("/api/public/management/*").authenticated()
+                .antMatchers("/chatrooms").permitAll()
 //                .antMatchers("/api/public/admin/*").authenticated()
                 .anyRequest().authenticated();
     }
 
     @Bean
-    DaoAuthenticationProvider authenticationProvider(){
+    DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
