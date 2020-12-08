@@ -1,9 +1,9 @@
 package de.htw.berlin.jwt.model;
 
-public class LoginViewModel {
+
+public class UserDTO {
     private String username;
     private String password;
-
 
     public String getUsername() {
         return username;

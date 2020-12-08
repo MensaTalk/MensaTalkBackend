@@ -18,5 +18,5 @@ INSERT INTO chat_message (chat_message_id, created_at, text_message, chat_room_i
 INSERT INTO chat_message (chat_message_id, created_at, text_message, chat_room_id) VALUES ('12', current_timestamp , 'third message room 4','4');
 
 
-INSERT INTO app_user (app_user_id, username, password, active, roles, permissions) VALUES ('1', 'Tilman', '$2y$10$2kJTXEXY36mTGnboe6bejeisqNI/McnvhNM6e7.P.Og31ufoOEw8m', '1', '','');
-INSERT INTO app_user (app_user_id, username, password, active, roles, permissions) VALUES ('2', 'Steven', '$2y$10$2kJTXEXY36mTGnboe6bejeisqNI/McnvhNM6e7.P.Og31ufoOEw8m', '1', '','');
+--INSERT INTO app_user (app_user_id, username, password, active, roles, permissions) VALUES ('9999', 'Tilman', '$2y$10$2kJTXEXY36mTGnboe6bejeisqNI/McnvhNM6e7.P.Og31ufoOEw8m');
+--INSERT INTO app_user (app_user_id, username, password, active, roles, permissions) VALUES ('10000', 'Steven', '$2y$10$2kJTXEXY36mTGnboe6bejeisqNI/McnvhNM6e7.P.Og31ufoOEw8m');
