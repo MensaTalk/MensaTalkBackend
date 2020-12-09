@@ -12,7 +12,7 @@ public class DAOUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "app_user_id")
     private long id;
-    @Column
+    @Column(unique = true)
     private String username;
     @Column
     @JsonIgnore

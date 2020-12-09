@@ -3,6 +3,7 @@ package de.htw.berlin.jwt.controller;
 import java.util.Objects;
 
 import de.htw.berlin.jwt.config.JwtTokenUtil;
+import de.htw.berlin.jwt.model.DAOUser;
 import de.htw.berlin.jwt.model.JwtRequest;
 import de.htw.berlin.jwt.model.JwtResponse;
 import de.htw.berlin.jwt.model.UserDTO;
@@ -50,7 +51,16 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-        return ResponseEntity.ok(userDetailsService.save(user));
+        DAOUser tempUser = userDetailsService.save(user);
+        if (tempUser== null){
+            return ResponseEntity.badRequest().body("Username taken!");
+        }
+
+        final UserDetails userDetails = userDetailsService
+                .loadUserByUsername(tempUser.getUsername());
+        final String token = jwtTokenUtil.generateToken(userDetails);
+
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 
     private void authenticate(String username, String password) throws Exception {
