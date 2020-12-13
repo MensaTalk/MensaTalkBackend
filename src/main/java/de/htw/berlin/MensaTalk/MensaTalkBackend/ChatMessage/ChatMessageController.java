@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class ChatMessageController {
@@ -21,17 +22,17 @@ public class ChatMessageController {
 
     // Direkter Zugriff
     @GetMapping("/chatmessages")
-    public List<ChatMessage> getAllMessages() {
-        return chatMessageRepository.findAll();
+    public List<ChatMessageDTO> getAllMessages() {
+        return chatMessageRepository.findAll().parallelStream().map(ChatMessage::createDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/chatmessages/{id}")
-    public Optional<ChatMessage> getMessageById(@PathVariable long id) {
-        return chatMessageRepository.findById(id);
+    public Optional<ChatMessageDTO> getMessageById(@PathVariable long id) {
+        return chatMessageRepository.findById(id).map(ChatMessage::createDTO);
     }
 
     @PostMapping(value = "/chatmessages")
-    public List<ChatMessage> postNewMessage(@RequestBody List<ChatMessageDTO> chatMessageListDTO) {
+    public List<ChatMessageDTO> postNewMessage(@RequestBody List<ChatMessageDTO> chatMessageListDTO) {
         List<ChatMessage> newMessages = new ArrayList<>(        );
 
         for(ChatMessageDTO chatMessageDTO :chatMessageListDTO ) {
@@ -50,13 +51,13 @@ public class ChatMessageController {
 
             newMessages.add(newMessage);
         }
-        return chatMessageRepository.saveAll(newMessages);
+        return chatMessageRepository.saveAll(newMessages).parallelStream().map(ChatMessage::createDTO).collect(Collectors.toList());
     }
 
     // In Abhängigkeit zum Raum
     @GetMapping("/chatrooms/{roomId}/chatmessages")
-    public List<ChatMessage> getAllMessagesInRoom(@PathVariable long roomId) {
-        return chatMessageRepository.findByChatRoomId(roomId);
+    public List<ChatMessageDTO> getAllMessagesInRoom(@PathVariable long roomId) {
+        return chatMessageRepository.findByChatRoomId(roomId).parallelStream().map(ChatMessage::createDTO).collect(Collectors.toList());
     }
 
 }

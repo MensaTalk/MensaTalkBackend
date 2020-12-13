@@ -51,6 +51,10 @@ public class ChatMessage implements Serializable {
         this.author = author;
     }
 
+    public ChatMessageDTO createDTO(){
+        return new ChatMessageDTO(chatRoom.getId() ,author.getUsername(),textMessage, created_at);
+    }
+
     public long getId() {
         return id;
     }
@@ -90,4 +94,6 @@ public class ChatMessage implements Serializable {
     public void setAuthor(DAOUser author) {
         this.author = author;
     }
+
+
 }
