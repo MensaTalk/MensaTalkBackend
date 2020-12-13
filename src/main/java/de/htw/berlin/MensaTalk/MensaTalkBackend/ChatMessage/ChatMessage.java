@@ -3,6 +3,7 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
+import de.htw.berlin.jwt.model.DAOUser;
 import net.minidev.json.annotate.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
@@ -26,6 +27,11 @@ public class ChatMessage implements Serializable {
     @JoinColumn(name = "chat_room_id", nullable = false)
     private ChatRoom chatRoom;
 
+    @ManyToOne
+    @JoinColumn(name= "app_user_id", nullable = false)
+    @JsonManagedReference
+    private DAOUser author;
+
     //Inhalte
     @Column(nullable = false)
     private String textMessage;
@@ -38,10 +44,11 @@ public class ChatMessage implements Serializable {
     public ChatMessage() {
     }
 
-    public ChatMessage(ChatRoom chatRoom, String textMessage, Date created_at) {
+    public ChatMessage(ChatRoom chatRoom, String textMessage, Date created_at, DAOUser author) {
         this.chatRoom = chatRoom;
         this.textMessage = textMessage;
         this.created_at = created_at;
+        this.author = author;
     }
 
     public long getId() {
@@ -74,5 +81,13 @@ public class ChatMessage implements Serializable {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public DAOUser getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(DAOUser author) {
+        this.author = author;
     }
 }

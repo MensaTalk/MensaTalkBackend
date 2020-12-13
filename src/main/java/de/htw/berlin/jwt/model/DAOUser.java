@@ -1,8 +1,12 @@
 package de.htw.berlin.jwt.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage.ChatMessage;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "app_user")
@@ -17,6 +21,14 @@ public class DAOUser {
     @Column
     @JsonIgnore
     private String password;
+
+    @OneToMany(
+            mappedBy = "author",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonBackReference
+    private List<ChatMessage> chatMessageList = new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -34,4 +46,16 @@ public class DAOUser {
         this.password = password;
     }
 
+    public List<ChatMessage> getChatMessageList() {
+        return chatMessageList;
+    }
+    public void setChatMessageList(List<ChatMessage> chatMessageList) {
+        this.chatMessageList = chatMessageList;
+    }
+    public void addChatMessage(ChatMessage chatMessage) {
+        this.chatMessageList.add(chatMessage);
+    }
+    public void addChatMessage(List<ChatMessage> chatMessageList) {
+        this.chatMessageList.addAll(chatMessageList);
+    }
 }
