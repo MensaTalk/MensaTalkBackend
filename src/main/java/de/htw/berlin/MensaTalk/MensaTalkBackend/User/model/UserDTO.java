@@ -1,4 +1,4 @@
-package de.htw.berlin.jwt.model;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.User.model;
 
 
 public class UserDTO {

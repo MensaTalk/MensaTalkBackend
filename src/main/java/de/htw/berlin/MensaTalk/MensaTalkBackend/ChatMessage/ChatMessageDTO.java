@@ -1,7 +1,5 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
-import de.htw.berlin.jwt.model.DAOUser;
-
 import java.util.Date;
 
 public class ChatMessageDTO {

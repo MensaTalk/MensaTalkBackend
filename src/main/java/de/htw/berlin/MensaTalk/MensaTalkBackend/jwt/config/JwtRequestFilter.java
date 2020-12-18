@@ -1,4 +1,4 @@
-package de.htw.berlin.jwt.config;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.config;
 
 import java.io.IOException;
 
@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import de.htw.berlin.jwt.service.JwtUserDetailsService;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

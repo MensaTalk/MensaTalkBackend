@@ -1,13 +1,9 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
-import de.htw.berlin.jwt.model.DAOUser;
-import net.minidev.json.annotate.JsonIgnore;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,7 +26,7 @@ public class ChatMessage implements Serializable {
     @ManyToOne
     @JoinColumn(name= "app_user_id", nullable = false)
     @JsonManagedReference
-    private DAOUser author;
+    private User author;
 
     //Inhalte
     @Column(nullable = false)
@@ -39,20 +35,22 @@ public class ChatMessage implements Serializable {
     //TimeStamp
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
-    private Date created_at;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationDateTime;
+
 
     public ChatMessage() {
     }
 
-    public ChatMessage(ChatRoom chatRoom, String textMessage, Date created_at, DAOUser author) {
+    public ChatMessage(ChatRoom chatRoom, String textMessage, Date created_at, User author) {
         this.chatRoom = chatRoom;
         this.textMessage = textMessage;
-        this.created_at = created_at;
+        this.creationDateTime = created_at;
         this.author = author;
     }
 
     public ChatMessageDTO createDTO(){
-        return new ChatMessageDTO(chatRoom.getId() ,author.getUsername(),textMessage, created_at);
+        return new ChatMessageDTO(chatRoom.getId() ,author.getUsername(),textMessage, creationDateTime);
     }
 
     public long getId() {
@@ -80,18 +78,18 @@ public class ChatMessage implements Serializable {
     }
 
     public Date getCreated_at() {
-        return created_at;
+        return creationDateTime;
     }
 
     public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+        this.creationDateTime = created_at;
     }
 
-    public DAOUser getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(DAOUser author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 

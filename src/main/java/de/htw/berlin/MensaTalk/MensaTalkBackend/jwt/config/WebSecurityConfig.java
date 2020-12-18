@@ -1,4 +1,4 @@
-package de.htw.berlin.jwt.config;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

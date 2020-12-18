@@ -2,11 +2,13 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoomRepository;
-import de.htw.berlin.jwt.dao.UserDao;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,7 +20,7 @@ public class ChatMessageController {
     @Autowired
     private ChatRoomRepository chatRoomRepository;
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
     // Direkter Zugriff
     @GetMapping("/chatmessages")
@@ -33,9 +35,9 @@ public class ChatMessageController {
 
     @PostMapping(value = "/chatmessages")
     public List<ChatMessageDTO> postNewMessage(@RequestBody List<ChatMessageDTO> chatMessageListDTO) {
-        List<ChatMessage> newMessages = new ArrayList<>(        );
+        List<ChatMessage> newMessages = new ArrayList<>();
 
-        for(ChatMessageDTO chatMessageDTO :chatMessageListDTO ) {
+        for (ChatMessageDTO chatMessageDTO : chatMessageListDTO) {
             ChatMessage newMessage = new ChatMessage();
             Optional<ChatRoom> room = chatRoomRepository.findById(chatMessageDTO.getChatRoomId());
             if (room.isPresent()) {
@@ -47,7 +49,7 @@ public class ChatMessageController {
 
             newMessage.setCreated_at(chatMessageDTO.getCreated_at());
             newMessage.setTextMessage(chatMessageDTO.getTextMessage());
-            newMessage.setAuthor(userDao.findByUsername(chatMessageDTO.getAuthorName()));
+            newMessage.setAuthor(userRepository.findByUsername(chatMessageDTO.getAuthorName()));
 
             newMessages.add(newMessage);
         }
@@ -57,7 +59,16 @@ public class ChatMessageController {
     // In Abhängigkeit zum Raum
     @GetMapping("/chatrooms/{roomId}/chatmessages")
     public List<ChatMessageDTO> getAllMessagesInRoom(@PathVariable long roomId) {
-        return chatMessageRepository.findByChatRoomId(roomId).parallelStream().map(ChatMessage::createDTO).collect(Collectors.toList());
+
+
+        ZonedDateTime zonedDateTime =  ZonedDateTime.now().minusMinutes(5);
+        Date date = Date.from(zonedDateTime.toInstant());
+
+        return chatMessageRepository.findAllByChatRoomIdAndCreationDateTimeAfter(roomId, date)
+                .parallelStream().map(ChatMessage::createDTO)
+                .collect(Collectors.toList());
+        //.filter(chatMessage -> chatMessage.getCreated_at().after(date2))
+
     }
 
 }

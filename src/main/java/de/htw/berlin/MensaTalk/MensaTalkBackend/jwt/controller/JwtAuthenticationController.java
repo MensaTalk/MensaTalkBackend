@@ -1,13 +1,11 @@
-package de.htw.berlin.jwt.controller;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.controller;
 
-import java.util.Objects;
-
-import de.htw.berlin.jwt.config.JwtTokenUtil;
-import de.htw.berlin.jwt.model.DAOUser;
-import de.htw.berlin.jwt.model.JwtRequest;
-import de.htw.berlin.jwt.model.JwtResponse;
-import de.htw.berlin.jwt.model.UserDTO;
-import de.htw.berlin.jwt.service.JwtUserDetailsService;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.UserDTO;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.config.JwtTokenUtil;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.request.*;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,12 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -35,6 +28,9 @@ public class JwtAuthenticationController {
 
     @Autowired
     private JwtUserDetailsService userDetailsService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
@@ -51,8 +47,8 @@ public class JwtAuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-        DAOUser tempUser = userDetailsService.save(user);
-        if (tempUser== null){
+        User tempUser = userDetailsService.save(user);
+        if (tempUser == null) {
             return ResponseEntity.badRequest().body("Username taken!");
         }
 
@@ -61,6 +57,16 @@ public class JwtAuthenticationController {
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
+    }
+
+    @RequestMapping(value = "/verifyUserNameWithToken", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody VerifyRequest VerifyRequest) throws Exception {
+
+        if (jwtTokenUtil.getUsernameFromToken(VerifyRequest.getJwtToken()).equals(VerifyRequest.getUserName())) {
+            return ResponseEntity.ok(userRepository.findByUsername(VerifyRequest.getUserName()).getId());
+        } else {
+            return ResponseEntity.badRequest().body("UserName does not match Token!");
+        }
     }
 
     private void authenticate(String username, String password) throws Exception {

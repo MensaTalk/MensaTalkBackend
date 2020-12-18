@@ -32,7 +32,6 @@ public class ChatRoom implements Serializable {
     private List<ChatMessage> chatMessageList = new ArrayList<>();
 
     public ChatRoom() {
-
     }
 
     public ChatRoom(String name, List<ChatMessage> chatMessageList) {

@@ -1,4 +1,4 @@
-package de.htw.berlin.jwt.config;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.config;
 
 
 import java.io.Serializable;
