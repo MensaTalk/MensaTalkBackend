@@ -49,6 +49,9 @@ public class User {
     // Profilbild
 
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }

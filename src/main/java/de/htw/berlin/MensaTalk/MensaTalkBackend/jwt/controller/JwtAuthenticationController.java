@@ -1,7 +1,7 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.controller;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.UserDTO;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.JwtUserDTO;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.config.JwtTokenUtil;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.request.*;
@@ -46,7 +46,7 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+    public ResponseEntity<?> saveUser(@RequestBody JwtUserDTO user) throws Exception {
         User tempUser = userDetailsService.save(user);
         if (tempUser == null) {
             return ResponseEntity.badRequest().body("Username taken!");

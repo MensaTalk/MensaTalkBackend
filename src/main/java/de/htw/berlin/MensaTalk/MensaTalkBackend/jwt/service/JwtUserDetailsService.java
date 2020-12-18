@@ -3,7 +3,7 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.service;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.UserDTO;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.JwtUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,7 +32,7 @@ public class JwtUserDetailsService implements UserDetailsService {
                 new ArrayList<>());
     }
 
-    public User save(UserDTO user) {
+    public User save(JwtUserDTO user) {
         User newUser = new User();
         newUser.setUsername(user.getUsername());
         newUser.setPassword(bcryptEncoder.encode(user.getPassword()));

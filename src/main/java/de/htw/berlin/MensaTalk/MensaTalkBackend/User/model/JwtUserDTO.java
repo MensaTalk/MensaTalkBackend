@@ -1,7 +1,7 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.User.model;
 
 
-public class UserDTO {
+public class JwtUserDTO {
     private String username;
     private String password;
 
