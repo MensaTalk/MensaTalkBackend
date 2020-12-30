@@ -47,6 +47,8 @@ public class User {
     private String status;
 
     // Profilbild
+    @Column
+    private String amazonUrl;
 
 
     public User() {
@@ -70,6 +72,14 @@ public class User {
 
     public long getId() {
         return id;
+    }
+
+    public String getAmazonUrl() {
+        return amazonUrl;
+    }
+
+    public void setAmazonUrl(String amazonUrl) {
+        this.amazonUrl = amazonUrl;
     }
 
     public int getAge() {
