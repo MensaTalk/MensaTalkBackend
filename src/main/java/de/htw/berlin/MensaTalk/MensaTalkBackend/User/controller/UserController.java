@@ -36,7 +36,6 @@ public class UserController {
             return null;
         }
 
-        toUpdate.setUsername(profileUserDTO.getUsername());
         toUpdate.setAge(profileUserDTO.getAge());
         toUpdate.setInterests(profileUserDTO.getInterests());
         toUpdate.setStatus(profileUserDTO.getStatus());

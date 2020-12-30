@@ -4,8 +4,6 @@ public class ProfileUserDTO {
 
     private long id;
 
-    private String username;
-
     private int age;
 
     private String interests;
@@ -21,14 +19,6 @@ public class ProfileUserDTO {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public int getAge() {
