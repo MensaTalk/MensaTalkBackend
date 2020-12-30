@@ -1,10 +1,9 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +15,12 @@ public class ChatRoomController {
     @RequestMapping("/chatrooms")
     public List<ChatRoom> getRooms(){
         return chatRoomRepository.findAll();
+    }
+
+    @RequestMapping(value = "/chatrooms", method = RequestMethod.POST)
+    public ChatRoom createRooms(@RequestBody ChatRoomDTO chatRoomDTO){
+        ChatRoom newRoom = new ChatRoom(chatRoomDTO.name, new ArrayList<>());
+        return chatRoomRepository.save(newRoom);
     }
     @RequestMapping("/chatrooms/{id}")
     public Optional<ChatRoom> getRoomById(@PathVariable long id){
