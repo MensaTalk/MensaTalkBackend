@@ -64,6 +64,6 @@ public class UserController {
 
         userRepository.save(user);
         imageService.uploadTos3bucket(fileName, request.getInputStream());
-        
+
     }
 }
