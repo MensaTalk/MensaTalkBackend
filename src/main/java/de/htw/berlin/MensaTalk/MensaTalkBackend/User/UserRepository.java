@@ -1,4 +1,4 @@
-package de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.User;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -2,7 +2,7 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend.ChatMessage;
 
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoom;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.ChatRoom.ChatRoomRepository;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

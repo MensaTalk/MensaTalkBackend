@@ -1,6 +1,6 @@
-package de.htw.berlin.MensaTalk.MensaTalkBackend.User.controller;
+package de.htw.berlin.MensaTalk.MensaTalkBackend.User;
 
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.UserRepository;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.ProfileUserDTO;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
 import org.springframework.beans.factory.annotation.Autowired;

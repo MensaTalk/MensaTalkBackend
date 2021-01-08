@@ -3,7 +3,7 @@ package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.controller;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.JwtUserDTO;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.config.JwtTokenUtil;
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.UserRepository;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.request.*;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

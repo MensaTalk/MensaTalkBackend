@@ -1,7 +1,7 @@
 package de.htw.berlin.MensaTalk.MensaTalkBackend.jwt.service;
 
 
-import de.htw.berlin.MensaTalk.MensaTalkBackend.User.dao.UserRepository;
+import de.htw.berlin.MensaTalk.MensaTalkBackend.User.UserRepository;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.User;
 import de.htw.berlin.MensaTalk.MensaTalkBackend.User.model.JwtUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
