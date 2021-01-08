@@ -32,8 +32,8 @@ public class ChatMessageControllerTest {
 
     private String[] defaultMessages =
             {"\"chatRoomId\":1,\"authorName\":\"dummyUser\",\"textMessage\":\"first message room 1\"",
-                    ",\"chatRoomId\":1,\"authorName\":\"dummyUser\",\"textMessage\":\"second message room 1\"",
-                    ",\"chatRoomId\":1,\"authorName\":\"dummyUser\",\"textMessage\":\"thid message room 1\""};
+                    "\"chatRoomId\":1,\"authorName\":\"dummyUser\",\"textMessage\":\"second message room 1\"",
+                    "\"chatRoomId\":1,\"authorName\":\"dummyUser\",\"textMessage\":\"thid message room 1\""};
 
     @Test
     public void getAllMessages() throws Exception {
